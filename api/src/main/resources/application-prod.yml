@@ -1,0 +1,20 @@
+databases:
+  main:
+    platform: mysql
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    jdbc-url: jdbc:mysql://localhost:3306?serverTimezone=UTC&characterEncoding=UTF-8
+    username: sample
+    password: ass
+
+spring:
+  datasource:
+    hikari:
+      max-lifetime: 1800000
+      maximum-pool-size: 2
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+  h2:
+    console:
+      enabled: false

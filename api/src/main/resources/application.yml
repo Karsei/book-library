@@ -1,0 +1,53 @@
+databases:
+  main:
+    platform: h2
+    driver-class-name: org.h2.Driver
+    jdbc-url: jdbc:h2:~/test
+    username: sa
+    password:
+
+server:
+  port: 80
+  error:
+    whitelabel:
+      enabled: true
+
+management:
+  endpoint:
+    health:
+      enabled: true
+      show-details: when_authorized
+    logfile:
+      external-file: ${logging.file.name}
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  level:
+    org.springframework.web.servlet.DispatcherServlet: DEBUG
+    com.zaxxer.hikari.HikariConfig: DEBUG
+    com.zaxxer.hikari: TRACE
+  file:
+    name: /var/log/spring.log
+
+spring:
+  datasource:
+    hikari:
+      pool-name: gBookCP
+      connection-timeout: 30000
+      max-lifetime: 1800000
+      maximum-pool-size: 1
+      leak-detection-threshold: 1000
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+      path: "/h2"
+  application:
+    name: gbook-api
