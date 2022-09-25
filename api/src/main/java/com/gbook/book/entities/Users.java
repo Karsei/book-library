@@ -1,6 +1,7 @@
 package com.gbook.book.entities;
 
-import com.gbook.book.configs.converters.YesNoStringToBooleanConverter;
+import com.gbook.book.configs.converters.YesNoConverter;
+import com.gbook.book.domains.YesNo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,9 +32,9 @@ public class Users {
     @Column(name = "NAME", nullable = false)
     private String name;
 
-    @Convert(converter = YesNoStringToBooleanConverter.class)
+    @Convert(converter = YesNoConverter.class)
     @Column(name = "IS_ADMIN", nullable = false)
-    private Boolean admin;
+    private YesNo admin;
 
     @Column(name = "EBOOK_LIB_PASSWD")
     private String ebookLibPassword;
