@@ -6,7 +6,7 @@ import javax.persistence.Converter;
 
 @Converter
 public class YesNoConverter extends AbstractDbCodeToEnumConverter<YesNo> {
-    public static final String ENUM_NAME = "해당여부";
+    public static final String ENUM_NAME = "YES/NO";
 
     public YesNoConverter() {
         super(YesNo.class, ENUM_NAME);
