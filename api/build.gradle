@@ -2,11 +2,24 @@ plugins {
     id 'org.springframework.boot' version "${springBootVersion}"
     id 'io.spring.dependency-management' version "${springDependencyVersion}"
     id 'java'
+    id 'jacoco'
 }
 
 group = 'com.gbook'
 version = projectVersion
 sourceCompatibility = '13'
+
+jacoco {
+    toolVersion('0.8.8')
+}
+
+jacocoTestReport {
+    reports {
+        html.enabled(true)
+        xml.enabled(false)
+        csv.enabled(false)
+    }
+}
 
 configurations {
     compileOnly {
@@ -49,6 +62,28 @@ dependencyManagement {
     }
 }
 
-tasks.named('test') {
+test {
     useJUnitPlatform()
+    jacoco {
+        enabled(true)
+        destinationFile = file("$buildDir/jacoco/jacoco.exec")
+    }
+
+    finalizedBy('jacocoTestReport')
+}
+
+jacocoTestReport {
+    finalizedBy('jacocoTestCoverageVerification')
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            enabled(true)
+            element('CLASS')
+            limit {
+                minimum = 0.0
+            }
+        }
+    }
 }
