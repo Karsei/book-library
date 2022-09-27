@@ -51,3 +51,6 @@ spring:
       path: "/h2"
   application:
     name: gbook-api
+jasypt:
+  encryptor:
+    bean: stringEncryptor
