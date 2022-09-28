@@ -1,0 +1,74 @@
+plugins {
+    id 'com.github.node-gradle.node' version '3.4.0'
+}
+
+node {
+    /**
+     * 특정 NodeJS 버전을 다운로드하고 설치할지 여부
+     * false - 전역 설치된 NodeJS 이용
+     * true - NodeJS 를 직접 다운로드하여 설치 (npm 은 NodeJS 와 함께 번들로 제공)
+     */
+    download = false
+
+    /**
+     * 위에서 download 파라미터가 true 일 경우 다운로드할 NodeJS 버전
+     * workDir 에 압축이 풀림
+     */
+    version = "16.14.0"
+
+    /**
+     * 사용할 npm 버전
+     * 지정되어 있다면, npmWorkDir 에 설치
+     * 빈 값이라면, 플러그인이 NodeJS 와 함께 번들로 제공되는 npm 명령어를 사용
+     */
+    npmVersion = ""
+
+    /**
+     * 사용할 Yarn 버전
+     * Yarn 작업은 먼저 yarnWorkDir 에 Yarn 을 설치
+     * 버전이 정의된 경우, 정의된 버전을 사용하고 그렇지 않은 경우는 최신 버전을 사용 (기본값)
+     */
+    yarnVersion = ""
+
+    /**
+     * NodeJS 를 가져오기 위한 기본 URL
+     * download 파라미터가 true 인 경우에만 사용됨
+     * 미러를 사용하려면 변경하거나 자신만의 저장소를 직접 추가하려면 null 로 설정
+     */
+    distBaseUrl = "https://nodejs.org/dist"
+
+    /**
+     * 안전하지 않은 HTTP 연결을 통해 NodeJS 저장소와 통신할 수 있는지 여부를 지정
+     * download 파라미터가 true 인 경우에만 사용됨
+     * HTTPS 가 아닌 HTTP 를 사용하는 미러를 사용하는 경우 true 로 변경하거나 Gradle 의 기본 동작을 사용하려면 null 로 설정
+     */
+    allowInsecureProtocol = null
+
+    /**
+     * npmInstall 작업에 의해 실행될 npm 명령어 지정
+     * 기본적으로 'install' 이지만 ci 로 변경 가능
+     */
+    npmInstallCommand = "install"
+
+    // NodeJS 가 압축 해제될 경로 (download 파라미터가 true 일 경우에만)
+    workDir = file("${project.projectDir}/.gradle/nodejs")
+
+    // npm 이 설치될 경로 (버전이 지정된 경우)
+    npmWorkDir = file("${project.projectDir}/.gradle/npm")
+
+    // Yarn 이 설치될 경로 (yarn 작업이 사용될 경우)
+    yarnWorkDir = file("${project.projectDir}/.gradle/yarn")
+
+    /**
+     * NodeJS 프로젝트 위치
+     * package.json 과 node_modules 경로가 있는 곳을 지정하며 기본적으로 현재 프로젝트의 루트를 가리킴
+     */
+    nodeProjectDir = file("${project.projectDir}/frontend")
+
+    /**
+     * 플로그인이 자동으로 npm 및 yarn 명령어에 프록시 구성을 추가해야 하는지의 여부
+     * Gradle 에 명시된 프록시 구성에 따름
+     * npm 또는 yarn 에 대한 프록시를 직접 구성하려면 이 옵션을 비활성화할 것 (예시: .npmrc 파일 안)
+     */
+    nodeProxySettings = ProxySettings.SMART
+}
