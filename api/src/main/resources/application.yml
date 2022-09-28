@@ -45,7 +45,6 @@ spring:
     hibernate:
       ddl-auto: create-drop
     show-sql: true
-    database: mysql
   h2:
     console:
       enabled: true

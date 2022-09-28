@@ -10,7 +10,6 @@ spring:
     hibernate:
       ddl-auto: create-drop
     show-sql: true
-    database: h2
   application:
     name: gbook-api
 jasypt:
