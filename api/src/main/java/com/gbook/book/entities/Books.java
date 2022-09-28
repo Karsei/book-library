@@ -20,7 +20,15 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor @AllArgsConstructor
 @Entity
-@Table(name = "BOOKS")
+@Table(
+        name = "BOOKS",
+        uniqueConstraints = {
+                @UniqueConstraint(
+                        name = "unique_book_code",
+                        columnNames={"ID", "BOOK_CODE"}
+                )
+        }
+)
 @DynamicInsert @DynamicUpdate
 public class Books {
     @Id

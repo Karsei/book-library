@@ -16,7 +16,13 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor @AllArgsConstructor
 @Entity
-@Table(name = "BOOK_CATEGORIES")
+@Table(
+        name = "BOOK_CATEGORIES",
+        indexes = @Index(
+                name = "FK_BOOK_CATEGORIES",
+                columnList = "CATEGORY_ID"
+        )
+)
 @DynamicInsert @DynamicUpdate
 @IdClass(BookCategoriesId.class)
 public class BookCategories {

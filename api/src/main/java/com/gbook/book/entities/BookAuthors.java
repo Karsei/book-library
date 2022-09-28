@@ -18,16 +18,25 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor @AllArgsConstructor
 @Entity
-@Table(name = "BOOK_AUTHORS")
+@Table(
+        name = "BOOK_AUTHORS",
+        indexes = @Index(
+                name = "FK_BOOK_AUTHORS_AUTHOR",
+                columnList = "AUTHOR_ID"
+        )
+)
+@IdClass(BookAuthorsId.class)
 @DynamicInsert @DynamicUpdate
 public class BookAuthors {
     @Id
     @Column(name = "BOOK_ID", nullable = false)
     private Long bookId;
 
+    @Id
     @Column(name = "AUTHOR_ID", nullable = false)
     private Long authorId;
 
+    @Id
     @Convert(converter = BookAuthorTypeConverter.class)
     @Column(name = "TYPE", nullable = false)
     private BookAuthorType type;
