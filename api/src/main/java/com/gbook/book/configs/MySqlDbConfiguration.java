@@ -15,6 +15,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 
 @EnableTransactionManagement
 @EnableJpaRepositories(
@@ -49,21 +52,25 @@ public class MySqlDbConfiguration {
         return hikariCp;
     }
 
-    @Bean(name = "mySqlEntityManagerFactory")
-    public EntityManagerFactory mySqlEntityManagerFactory() {
-        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactoryBean.setDataSource(mySqlDataSource());
-        entityManagerFactoryBean.setPersistenceUnitName("mysqlEntity");
-        entityManagerFactoryBean.setPackagesToScan("com.gbook.book.entities");
-        entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        entityManagerFactoryBean.afterPropertiesSet();
-        return entityManagerFactoryBean.getObject();
-    }
-
-    @Bean(name = "mySqlTransactionManager")
-    public PlatformTransactionManager mySqlTransactionManager(@Qualifier("mySqlEntityManagerFactory") EntityManagerFactory entityManagerFactory) {
-        JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(entityManagerFactory);
-        return transactionManager;
-    }
+//    @Bean(name = "mySqlEntityManagerFactory")
+//    public EntityManagerFactory mySqlEntityManagerFactory() {
+//        Properties properties = new Properties();
+//        properties.put("hibernate.hbm2ddl.auto", "update");
+//
+//        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+//        entityManagerFactoryBean.setDataSource(mySqlDataSource());
+//        entityManagerFactoryBean.setPersistenceUnitName("mysqlEntity");
+//        entityManagerFactoryBean.setPackagesToScan("com.gbook.book.entities");
+//        entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+//        entityManagerFactoryBean.setJpaProperties(properties);
+//        entityManagerFactoryBean.afterPropertiesSet();
+//        return entityManagerFactoryBean.getObject();
+//    }
+//
+//    @Bean(name = "mySqlTransactionManager")
+//    public PlatformTransactionManager mySqlTransactionManager(@Qualifier("mySqlEntityManagerFactory") EntityManagerFactory entityManagerFactory) {
+//        JpaTransactionManager transactionManager = new JpaTransactionManager();
+//        transactionManager.setEntityManagerFactory(entityManagerFactory);
+//        return transactionManager;
+//    }
 }
