@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    hikari:
+      pool-name: gBookCP
+      connection-timeout: 30000
+      max-lifetime: 1800000
+      maximum-pool-size: 1
+      leak-detection-threshold: 1000
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    database: h2
+  application:
+    name: gbook-api
+jasypt:
+  encryptor:
+    bean: stringEncryptor
+    password: ''
