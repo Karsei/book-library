@@ -5,7 +5,7 @@ import org.springframework.util.StringUtils;
 
 import java.util.EnumSet;
 
-public class DbCodeEnumConvertUtil {
+public class DbCodeEnumConverter {
     public static <T extends Enum<T> & DbCommonType> T ofDbCode(Class<T> clazz,
                                                                 String dbCode) {
         if (!StringUtils.hasText(dbCode)) return null;

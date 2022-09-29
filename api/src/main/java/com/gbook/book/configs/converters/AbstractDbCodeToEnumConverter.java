@@ -1,7 +1,7 @@
 package com.gbook.book.configs.converters;
 
 import com.gbook.book.domains.DbCommonType;
-import com.gbook.book.utils.DbCodeEnumConvertUtil;
+import com.gbook.book.utils.DbCodeEnumConverter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.util.StringUtils;
@@ -19,12 +19,12 @@ public class AbstractDbCodeToEnumConverter<E extends Enum<E> & DbCommonType> imp
     @Override
     public String convertToDatabaseColumn(E attribute) {
         if (attribute == null) throw new IllegalArgumentException("값을 변환할 수 없습니다.");
-        return DbCodeEnumConvertUtil.toDbCode(attribute);
+        return DbCodeEnumConverter.toDbCode(attribute);
     }
 
     @Override
     public E convertToEntityAttribute(String dbCode) {
         if (!StringUtils.hasText(dbCode)) return null;
-        return DbCodeEnumConvertUtil.ofDbCode(targetClass, dbCode);
+        return DbCodeEnumConverter.ofDbCode(targetClass, dbCode);
     }
 }
