@@ -7,7 +7,7 @@ plugins {
 
 group = 'com.gbook'
 version = projectVersion
-sourceCompatibility = '13'
+sourceCompatibility = '17'
 
 jacoco {
     toolVersion('0.8.8')
