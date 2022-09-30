@@ -51,7 +51,7 @@ public class Books {
     @Column(name = "FEATURE")
     private String feature;
 
-    @Column(name = "ORIGIN_TITLE")
+    @Column(name = "ORIGN_TITLE")
     private String originTitle;
 
     @Column(name = "PUBLISHER")
@@ -86,9 +86,11 @@ public class Books {
     @Column(name = "STATUS", nullable = false)
     private BookStatus status;
 
-    @Column(name = "TEXT")
-    private String text;
+    @Lob
+    @Column(name = "TOC")
+    private String toc;
 
+    @Lob
     @Column(name = "INTRODUCE")
     private String introduce;
 
