@@ -42,7 +42,7 @@ spring:
       leak-detection-threshold: 1000
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     show-sql: true
     defer-datasource-initialization: true
   h2:
@@ -54,6 +54,8 @@ spring:
   sql:
     init:
       mode: always
+      encoding: utf-8
+      platform: h2
 jasypt:
   encryptor:
     bean: stringEncryptor

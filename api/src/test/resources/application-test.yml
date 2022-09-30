@@ -10,8 +10,14 @@ spring:
     hibernate:
       ddl-auto: create-drop
     show-sql: true
+    defer-datasource-initialization: true
   application:
     name: gbook-api
+  sql:
+    init:
+      mode: always
+      encoding: utf-8
+      platform: h2
 jasypt:
   encryptor:
     bean: stringEncryptor
