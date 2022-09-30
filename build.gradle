@@ -4,6 +4,7 @@ buildscript {
         set('springBootVersion', '2.7.4')
         set('springCloudVersion', '2021.0.4')
         set('springDependencyVersion', '1.0.14.RELEASE')
+        set('queryDslVersion', '5.0.0')
     }
     repositories {
         mavenCentral()

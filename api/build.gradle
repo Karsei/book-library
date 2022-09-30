@@ -1,13 +1,13 @@
 plugins {
     id 'org.springframework.boot' version "${springBootVersion}"
     id 'io.spring.dependency-management' version "${springDependencyVersion}"
-    id 'java'
+    id 'java-library'
     id 'jacoco'
 }
 
 group = 'com.gbook'
 version = projectVersion
-sourceCompatibility = '13'
+sourceCompatibility = '17'
 
 jacoco {
     toolVersion('0.8.8')
@@ -31,14 +31,12 @@ repositories {
     mavenCentral()
 }
 
-ext {
-    set('springCloudVersion', springCloudVersion)
-}
-
 dependencies {
     // Lombok
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
 
     // Spring
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -46,6 +44,16 @@ dependencies {
     //implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+
+    // QueryDSL
+    implementation "com.querydsl:querydsl-core:${queryDslVersion}"
+    implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+    implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
+    annotationProcessor(
+            "jakarta.persistence:jakarta.persistence-api",
+            "jakarta.annotation:jakarta.annotation-api",
+            "com.querydsl:querydsl-apt:${queryDslVersion}:jpa"
+    )
 
     // DB
     runtimeOnly 'com.h2database:h2'
