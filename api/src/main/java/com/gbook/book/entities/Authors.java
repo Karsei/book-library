@@ -24,6 +24,7 @@ public class Authors {
     @Column(name = "ID", nullable = false)
     private Long id;
 
+    @Lob
     @Column(name = "NAME")
     private String name;
 

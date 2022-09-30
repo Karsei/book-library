@@ -33,6 +33,7 @@ public class Articles {
     @Column(name = "TITLE", nullable = false)
     private String title;
 
+    @Lob
     @Column(name = "CONTENT")
     private String content;
 
