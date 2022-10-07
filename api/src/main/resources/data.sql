@@ -1,3 +1,11 @@
+--AUTHORS
+INSERT INTO authors(
+    `name`, `created_at`, `updated_at`
+)
+VALUES (
+    '김경민', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
+);
+
 --BOOKS
 INSERT INTO books(
     `book_code`, `title`, `prefix_title`, `suffix_title`, `feature`,
