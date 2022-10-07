@@ -40,4 +40,28 @@ public class BookRepositoryTest {
         // then
         assertTrue(book.isEmpty());
     }
+
+    @Test
+    void existsByBookCode_present() {
+        // given
+        Long bookCode = 461L;
+
+        // when
+        boolean exist = bookRepository.existsByBookCode(bookCode);
+
+        // then
+        assertTrue(exist);
+    }
+
+    @Test
+    void existsByBookCode_empty() {
+        // given
+        Long bookCode = 0L;
+
+        // when
+        boolean exist = bookRepository.existsByBookCode(bookCode);
+
+        // then
+        assertFalse(exist);
+    }
 }
